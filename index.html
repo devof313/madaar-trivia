@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Madaar Trivia with GIF</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&amp;family=DM+Sans:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#4FB8A3}a:hover{color:#7FD3C2}
+.tile{perspective:900px}
+.tile-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;animation:tileflip 9s ease-in-out infinite}
+.face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.back{transform:rotateX(180deg)}
+@keyframes tileflip{0%,62%{transform:rotateX(0deg)}70%,88%{transform:rotateX(180deg)}96%,100%{transform:rotateX(360deg)}}
+.pulse{animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media (prefers-reduced-motion: reduce){.tile-inner,.pulse{animation:none}}
+</style>
+</helmet>
+<div style="width: 1920px; height: 1080px; box-sizing: border-box; padding: 88px 104px; background: {{ground}}; color: #FFFFFF; font-family: 'DM Sans', system-ui, sans-serif; display: flex; gap: 96px; align-items: stretch; overflow: hidden">
+
+  <div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: space-between">
+    <div style="display: flex; align-items: center; gap: 24px">
+      <img src="./assets/68f45c037e31b8f0d91018b88483bb58.png" alt="Madaar" style="height: 104px; width: auto; display: block">
+      <div style="width: 2px; height: 56px; background: rgba(255,255,255,0.3)"></div>
+      <div style="font-size: 24px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.78)">Team Trivia Showdown</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 40px">
+      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 232px; line-height: 0.86; letter-spacing: -0.045em">
+        <span style="display: block; color: #FFFFFF">Madaar</span>
+        <span style="display: block; color: {{accent}}">Trivia</span>
+      </h1>
+      <p style="margin: 0; max-width: 900px; font-size: 42px; line-height: 1.3; color: rgba(255,255,255,0.86)">Bring your game face, your random facts, and maybe (a little) competitive spirit.</p>
+    </div>
+
+    <div style="display: flex; gap: 56px; align-items: center; flex-wrap: wrap">
+      <div style="display: flex; align-items: center; gap: 16px; font-size: 36px; font-weight: 500">
+        <svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+        <span>Madaar Office, Bait AlReem</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 16px; font-size: 36px; font-weight: 500">
+        <svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+        <span>4 PM – 5 PM</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex: 0 0 660px; display: flex; flex-direction: column; justify-content: center; gap: 36px">
+    <div style="width: 660px; height: 371px; border-radius: 20px; overflow: hidden; border: 4px solid {{accent}}; box-sizing: border-box; background: #000000">
+      <img src="./assets/b0752d9e9433c290aeed5346da803ad5.gif" alt="It's only the biggest night of trivia of the year" style="width: 100%; height: 100%; object-fit: cover; display: block">
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px">
+      <sc-for list="{{tiles}}" as="t" hint-placeholder-count="9">
+        <div class="tile" style="height: 124px">
+          <div class="tile-inner" style="animation-delay: {{t.delay}}">
+            <div class="face" style="background: rgba(255,255,255,0.07); border: 2px solid rgba(255,255,255,0.16); box-sizing: border-box; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 60px; color: {{accent}}">{{t.v}}</div>
+            <div class="face back" style="background: {{accent}}; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 84px; color: {{ground}}"><span class="pulse" style="display: inline-block">?</span></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#4FB8A3","options":["#4FB8A3","#FFFFFF","#F5B83D"]},"ground":{"editor":"color","default":"#2B2060","options":["#2B2060","#4A388C","#1A1438"]},"$preview":{"width":1920,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const vals = [200, 200, 200, 400, 400, 400, 600, 600, 600];
+    const delays = [0, 3.2, 6.1, 1.6, 4.7, 7.4, 2.4, 5.5, 0.8];
+    return {
+      accent: this.props.accent ?? '#4FB8A3',
+      ground: this.props.ground ?? '#2B2060',
+      tiles: vals.map((v, i) => ({ v: v, delay: delays[i] + 's' }))
+    };
+  }
+}
+</script>
+</body>
+</html>
